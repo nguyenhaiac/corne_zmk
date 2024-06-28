@@ -9,6 +9,28 @@
 #include <dt-bindings/zmk/keys.h>
 
 / {
+
+    behaviors {
+        rbrace: right_braces {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_BRACE>, <&kp RIGHT_BRACE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        rpren: right_paren {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_PARENTHESIS>, <&kp RIGHT_PARENTHESIS>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+        rbracket: right_bracket {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LEFT_BRACKET>, <&kp RIGHT_BRACKET>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -27,21 +49,6 @@
             >;
         };
 
-        BASE_SHIFT {
-            // -----------------------------------------------------------------------------------------
-            // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-            // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-            // | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-            //                    | GUI |     | SPC |   | ENT |     | ALT |
-
-            bindings = <
-&kp TAB     &kp LS(Q)  &kp LS(W)  &kp LS(E)  &kp LS(R)  &kp LS(T)    &kp LS(Y)  &kp LS(U)   &kp LS(I)      &kp LS(O)    &kp LS(P)     &kp BSPC
-&bt BT_CLR  &kp LS(A)  &kp LS(S)  &kp LS(D)  &kp LS(F)  &kp LS(G)    &kp LS(H)  &kp LS(J)   &kp LS(K)      &kp LS(L)    &kp LS(SEMI)  &trans
-&kp LSHFT   &kp LS(Z)  &kp LS(X)  &kp LS(C)  &kp LS(V)  &kp LS(B)    &kp LS(N)  &kp LS(M)   &kp LS(COMMA)  &kp LS(DOT)  &kp LS(FSLH)  &trans
-                                  &mo 2      &kp TAB    &kp SPACE    &kp RET    &kp ESCAPE  &mo 4
-            >;
-        };
-
         NUM {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
@@ -50,21 +57,13 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp BSLH   &kp BSLH     &kp EXCLAMATION  &kp EQUAL  &kp AMPERSAND  &kp PIPE          &kp DOLLAR  &kp LEFT_BRACE  &kp LEFT_PARENTHESIS  &kp LBKT           &kp AT_SIGN  &kp N2
+&kp BSLH   &kp BSLH     &kp EXCLAMATION  &kp EQUAL  &kp AMPERSAND  &kp PIPE          &kp DOLLAR  &rbrace         &rpren                &rbracket           &kp AT_SIGN  &kp N2
 &kp LCTRL  &kp N0       &kp N1           &kp N2     &kp N3         &kp N4            &kp N5      &kp N6          &kp N7                &kp N8             &kp N9       &kp GRAVE
 &kp LSHFT  &kp PERCENT  &kp ASTERISK     &kp PLUS   &kp MINUS      &kp UNDERSCORE    &kp HASH    &kp GRAVE       &kp SQT               &kp DOUBLE_QUOTES  &kp CARET    &kp TILDE
                                          &mo 2      &kp TAB        &kp SPACE         &kp RET     &kp ESCAPE      &mo 4
             >;
         };
 
-        NUMSHIFT {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans   &trans       &trans     &kp RIGHT_BRACE  &kp RIGHT_PARENTHESIS  &kp RIGHT_BRACKET  &trans  &trans
-&trans  &trans  &trans  &trans  &trans   &trans       &trans     &trans           &trans                 &trans             &trans  &trans
-&trans  &trans  &trans  &trans  &trans   &trans       &trans     &trans           &trans                 &trans             &trans  &trans
-                        &mo 2   &kp TAB  &kp SPACE    &kp ENTER  &kp ESC          &mo 4
-            >;
-        };
 
         FUN {
             bindings = <
